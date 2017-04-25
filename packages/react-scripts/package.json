@@ -1,8 +1,8 @@
 {
-  "name": "react-scripts",
+  "name": "plmweb-react-scripts",
   "version": "0.9.5",
-  "description": "Configuration and scripts for Create React App.",
-  "repository": "facebookincubator/create-react-app",
+  "description": "PLMWEB configuration and scripts for Create React App.",
+  "repository": "https://github.com/romaindso/create-react-app",
   "license": "BSD-3-Clause",
   "engines": {
     "node": ">=4"
