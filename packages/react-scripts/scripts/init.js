@@ -77,6 +77,7 @@ module.exports = function(appPath, appName, verbose, originalDirectory, template
     args = [
       'install',
       '--save',
+      '--save-exact',
       verbose && '--verbose'
     ].filter(function(e) { return e; });
   }
