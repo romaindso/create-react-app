@@ -32,6 +32,8 @@ module.exports = {
     jest: true,
     node: true
   },
+  
+  extends: ['airbnb'],
 
   parserOptions: {
     ecmaVersion: 6,
