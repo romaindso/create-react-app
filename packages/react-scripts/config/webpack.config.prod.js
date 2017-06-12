@@ -97,7 +97,8 @@ module.exports = {
     alias: {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
-      'react-native': 'react-native-web'
+      'react-native': 'react-native-web',
+      'plmweb-common-kitui-stylesheet': path.normalize(path.resolve(paths.appNodeModules, 'plmweb-common-kitui/export/_index.scss'))
     }
   },
   resolveLoader: {
@@ -135,7 +136,9 @@ module.exports = {
           /\.(js|jsx)$/,
           /\.css$/,
           /\.json$/,
-          /\.svg$/
+          /\.svg$/,
+          /\.sass$/,
+          /\.scss$/
         ],
         loader: 'url',
         query: {
@@ -168,10 +171,10 @@ module.exports = {
       // use the "style" loader inside the async code so CSS from them won't be
       // in the main CSS file.
       {
-        test: /\.css$/,
+        test: /\.s?css$/,
         loader: ExtractTextPlugin.extract(
           'style',
-          'css?importLoaders=1!postcss',
+          'css?importLoaders=1!postcss!sass',
           extractTextPluginOptions
         )
         // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
@@ -193,6 +196,9 @@ module.exports = {
       // ** STOP ** Are you adding a new loader?
       // Remember to add the new extension(s) to the "url" loader exclusion list.
     ]
+  },
+  sassLoader: {
+    includePaths: [paths.appSrc, path.normalize(path.resolve(paths.appNodeModules, 'plmweb-common-kitui/export'))]
   },
   // @remove-on-eject-begin
   // Point ESLint to our predefined config.
