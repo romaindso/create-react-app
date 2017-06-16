@@ -30,7 +30,15 @@ module.exports = function(appPath, appName, verbose, originalDirectory, template
     'build': 'react-scripts build',
     'test': 'react-scripts test --env=jsdom',
     'coverage': 'npm test -- --coverage',
-    'eject': 'react-scripts eject'
+    'eject': 'react-scripts eject',
+    'precommit': 'lintstaged'
+  };
+
+  appPackage.lintstaged = {
+    'src/**/*.js': [
+      'prettier --single-quote --write',
+      'git add'
+    ]
   };
 
   fs.writeFileSync(
