@@ -9,7 +9,7 @@
     "prettier"
   ],
   "rules": {
-    "linebreak-style": "windows",
+    "linebreak-style": ["error", "windows"],
     "prettier/prettier": "error"
   }
 }
