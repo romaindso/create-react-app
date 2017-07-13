@@ -42,6 +42,7 @@ module.exports = function(
     start: 'react-scripts start',
     build: 'react-scripts build',
     test: 'react-scripts test --env=jsdom',
+    coverage: 'npm test -- --coverage',
     eject: 'react-scripts eject',
   };
 
