@@ -212,11 +212,6 @@ module.exports = {
                     {
                       loader: require.resolve('postcss-loader'),
                       options: {
-                        //  If a previous loader like e.g sass-loader is applied and it's sourceMap option is set, but 
-                        // the sourceMap option in postcss-loader is omitted, previous source maps will be discarded by 
-                        // postcss-loader entirely
-                        // https://github.com/postcss/postcss-loader#sourcemap
-                        sourceMap: true,
                         // Necessary for external CSS imports to work
                         // https://github.com/facebookincubator/create-react-app/issues/2677
                         ident: 'postcss',
