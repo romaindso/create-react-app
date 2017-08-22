@@ -13,7 +13,7 @@ If something doesn’t work please [file an issue](https://github.com/facebookin
 ```sh
 npm install -g create-react-app
 
-create-react-app my-app
+create-react-app my-app --scripts-version plmweb-react-scripts
 cd my-app/
 npm start
 ```

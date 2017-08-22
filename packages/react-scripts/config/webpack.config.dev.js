@@ -110,6 +110,8 @@ module.exports = {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
+      // Alias on kitui stylesheet
+      'plmweb-common-kitui-stylesheet': path.normalize(path.resolve(paths.appNodeModules, 'plmweb-common-kitui/export/_index.scss')),
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).
@@ -188,7 +190,7 @@ module.exports = {
           // In production, we use a plugin to extract that CSS to a file, but
           // in development "style" loader enables hot editing of CSS.
           {
-            test: /\.css$/,
+            test: /\.s?css$/,
             use: [
               require.resolve('style-loader'),
               {
@@ -200,6 +202,11 @@ module.exports = {
               {
                 loader: require.resolve('postcss-loader'),
                 options: {
+                  //  If a previous loader like e.g sass-loader is applied and it's sourceMap option is set, but 
+                  // the sourceMap option in postcss-loader is omitted, previous source maps will be discarded by 
+                  // postcss-loader entirely
+                  // https://github.com/postcss/postcss-loader#sourcemap
+                  sourceMap: true,
                   // Necessary for external CSS imports to work
                   // https://github.com/facebookincubator/create-react-app/issues/2677
                   ident: 'postcss',
@@ -216,6 +223,16 @@ module.exports = {
                     }),
                   ],
                 },
+              },
+              {
+                loader: 'sass-loader',
+                options: {
+                  sourceMap: true,
+                  includePaths: [
+                    paths.appSrc,
+                    path.normalize(path.resolve(paths.appNodeModules, 'plmweb-common-kitui/export'))
+                  ]
+                }
               },
             ],
           },
