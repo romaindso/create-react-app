@@ -44,6 +44,15 @@ module.exports = function(
     test: 'react-scripts test --env=jsdom',
     coverage: 'npm test -- --coverage',
     eject: 'react-scripts eject',
+    precommit: 'lint-staged'
+  };
+
+  // Setup lintstaged
+  appPackage[lint-staged] = {
+    'src/**/*.{js,jsx,css,scss}': [
+      'prettier --single-quote --write',
+      'git add'
+    ]
   };
 
   fs.writeFileSync(
