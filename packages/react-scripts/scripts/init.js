@@ -39,20 +39,21 @@ module.exports = function(
 
   // Setup the script rules
   appPackage.scripts = {
+    analyze: 'source-map-explorer build/static/js/main.*',
     start: 'react-scripts start',
     build: 'react-scripts build',
     test: 'react-scripts test --env=jsdom',
     coverage: 'npm test -- --coverage',
     eject: 'react-scripts eject',
-    precommit: 'lint-staged'
+    precommit: 'lint-staged',
   };
 
   // Setup lintstaged
   appPackage['lint-staged'] = {
     'src/**/*.{js,jsx,css,scss}': [
       'prettier --single-quote --write',
-      'git add'
-    ]
+      'git add',
+    ],
   };
 
   fs.writeFileSync(
