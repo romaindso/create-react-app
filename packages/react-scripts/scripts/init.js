@@ -46,11 +46,13 @@ module.exports = function(
     coverage: 'npm test -- --coverage',
     eject: 'react-scripts eject',
     precommit: 'lint-staged',
+    postcommit: 'cd ../../../ && git reset',
   };
 
   // Setup lintstaged
   appPackage['lint-staged'] = {
-    'src/**/*.{js,jsx,css,scss}': [
+    postcommit: 'cd ../../../ && git reset',
+    'src/main/app/**/*.{js,jsx,css,scss}': [
       'prettier --single-quote --write',
       'git add',
     ],
