@@ -39,20 +39,46 @@ module.exports = function(
 
   // Setup the script rules
   appPackage.scripts = {
+    analyze: 'source-map-explorer build/static/js/main.*',
     start: 'react-scripts start',
     build: 'react-scripts build',
     test: 'react-scripts test --env=jsdom',
+    ['test-ci']:
+      'set CI=true && yarn test -- --testResultsProcessor jest-junit',
     coverage: 'npm test -- --coverage',
+    ['coverage-ci']: 'set CI=true && yarn --coverage',
     eject: 'react-scripts eject',
-    precommit: 'lint-staged'
+    precommit: 'lint-staged',
+    postcommit: 'cd ../../../ && git reset',
   };
 
   // Setup lintstaged
   appPackage['lint-staged'] = {
-    'src/**/*.{js,jsx,css,scss}': [
+    postcommit: 'cd ../../../ && git reset',
+    'src/main/app/**/*.{js,jsx,css,scss}': [
       'prettier --single-quote --write',
-      'git add'
-    ]
+      'git add',
+    ],
+  };
+
+  // Setup custom Jest config
+  appPackage.jest = {
+    moduleNameMapper: {
+      ['\\.(scss|css|less)$']: '<rootDir>/src/__mocks__/styleMock.js',
+      ['\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)']:
+        '<rootDir>/src/__mocks__/fileMock.js',
+    },
+    collectCoverage: true,
+    coverageDirectory: '../../../target/reports/cobertura',
+    coverageReporters: ['cobertura'],
+  };
+  appPackage['jest-junit'] = {
+    suiteName: 'Jest Tests',
+    output: '../../../target/surefire-reports/frontend-tests.xml',
+    classNameTemplate: '{classname}-{title}',
+    titleTemplate: '{classname}-{title}',
+    ancestorSeparator: ' › ',
+    usePathForSuiteName: 'true',
   };
 
   fs.writeFileSync(
