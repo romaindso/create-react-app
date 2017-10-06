@@ -41,10 +41,8 @@ module.exports = function(
     start: 'react-scripts start',
     build: 'react-scripts build',
     test: 'react-scripts test --env=jsdom',
-    ['test-ci']:
-      'set CI=true && yarn test -- --testResultsProcessor jest-junit',
-    coverage: 'npm test -- --coverage',
-    ['coverage-ci']: 'set CI=true && yarn --coverage',
+    ['test-ci']: 'set CI=true && yarn test -- --testResultsProcessor jest-junit --coverage --coverageDirectory=../../../target/reports/cobertura',
+    coverage: 'yarn test -- --coverage',
     eject: 'react-scripts eject',
     precommit: 'lint-staged',
     postcommit: 'cd ../../../ && git reset',
@@ -52,7 +50,7 @@ module.exports = function(
 
   // Setup lintstaged
   appPackage['lint-staged'] = {
-    postcommit: 'cd ../../../ && git reset',
+    'gitDir': '../../../',
     'src/main/app/**/*.{js,jsx,css,scss}': [
       'prettier --single-quote --write',
       'git add',
@@ -61,14 +59,7 @@ module.exports = function(
 
   // Setup custom Jest config
   appPackage.jest = {
-    moduleNameMapper: {
-      ['\\.(scss|css|less)$']: '<rootDir>/src/__mocks__/styleMock.js',
-      ['\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)']:
-        '<rootDir>/src/__mocks__/fileMock.js',
-    },
-    collectCoverage: true,
-    coverageDirectory: '../../../target/reports/cobertura',
-    coverageReporters: ['cobertura'],
+    collectCoverage: true
   };
   appPackage['jest-junit'] = {
     suiteName: 'Jest Tests',
