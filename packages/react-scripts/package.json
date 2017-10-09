@@ -58,6 +58,7 @@
     "postcss-loader": "2.0.6",
     "prettier": "1.7.4",
     "promise": "8.0.1",
+    "prop-types": "15.6.0",
     "react-dev-utils": "^4.1.0",
     "sass-loader": "6.0.6",
     "source-map-explorer": "^1.4.0",
