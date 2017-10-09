@@ -57,10 +57,7 @@ module.exports = function(
     ],
   };
 
-  // Setup custom Jest config
-  appPackage.jest = {
-    collectCoverage: true
-  };
+  // Setup custom Jest config with jest-junit package
   appPackage['jest-junit'] = {
     suiteName: 'Jest Tests',
     output: '../../../target/surefire-reports/frontend-tests.xml',
