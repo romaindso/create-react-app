@@ -51,6 +51,7 @@
     "husky": "0.13.2",
     "jest": "20.0.4",
     "jest-enzyme": "3.5.1",
+    "jest-junit": "^3.0.0",
     "lint-staged": "3.3.1",
     "node-sass": "4.5.3",
     "object-assign": "4.1.1",
@@ -71,7 +72,6 @@
     "whatwg-fetch": "2.0.3"
   },
   "devDependencies": {
-    "jest-junit": "^3.0.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4"
   },
