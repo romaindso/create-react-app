@@ -48,7 +48,7 @@ module.exports = function(
     postcommit: 'cd ../../../ && git reset',
   };
 
-  // Setup lintstaged
+  // Setup lint-staged
   appPackage['lint-staged'] = {
     'gitDir': '../../../',
     'src/main/app/**/*.{js,jsx,css,scss}': [
@@ -58,6 +58,10 @@ module.exports = function(
   };
 
   // Setup custom Jest config with jest-junit package
+  appPackage.jest = {
+    coverageReporters: ['cobertura']
+  };
+
   appPackage['jest-junit'] = {
     suiteName: 'Jest Tests',
     output: '../../../target/surefire-reports/frontend-tests.xml',
