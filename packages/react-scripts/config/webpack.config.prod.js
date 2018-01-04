@@ -238,18 +238,7 @@ module.exports = {
                       }
                     },
                     {
-                      loader: "sass-loader",
-                      options: {
-                        includePaths: [
-                          paths.appSrc,
-                          path.normalize(
-                            path.resolve(
-                              paths.appNodeModules,
-                              "plmweb-common-kitui/dist"
-                            )
-                          )
-                        ]
-                      }
+                      loader: "sass-loader"
                     }
                   ]
                 },
