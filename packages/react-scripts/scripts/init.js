@@ -51,7 +51,7 @@ module.exports = function(
 
   // Setup lint-staged
   appPackage["lint-staged"] = {
-    "src/main/app/**/*.{js,jsx,css,scss}": [
+    "*.{js,jsx,css,scss}": [
       "prettier --single-quote --write",
       "git add"
     ]
