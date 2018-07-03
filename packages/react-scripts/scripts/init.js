@@ -45,16 +45,8 @@ module.exports = function(
       "set CI=true && yarn test -- --testResultsProcessor jest-junit --coverage --coverageDirectory=../../../target/reports/cobertura",
     coverage: "yarn test -- --coverage",
     eject: "react-scripts eject",
-    precommit: "lint-staged",
+    precommit: "pretty-quick --staged",
     postcommit: "cd ../../../ && git reset"
-  };
-
-  // Setup lint-staged
-  appPackage["lint-staged"] = {
-    "*.{js,jsx,css,scss}": [
-      "prettier --single-quote --write",
-      "git add"
-    ]
   };
 
   // Setup custom Jest config with jest-junit package
