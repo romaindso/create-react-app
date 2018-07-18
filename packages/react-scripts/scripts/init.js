@@ -42,8 +42,8 @@ module.exports = function(
     build: "react-scripts build",
     test: "react-scripts test --env=jsdom",
     ["test-ci"]:
-      "set CI=true && yarn test -- --testResultsProcessor jest-junit --coverage --coverageDirectory=../../../target/reports/cobertura",
-    coverage: "yarn test -- --coverage",
+      "set CI=true && yarn test --testResultsProcessor jest-junit --coverage --coverageDirectory=../../../target/reports/cobertura",
+    coverage: "yarn test --coverage",
     eject: "react-scripts eject",
     precommit: "pretty-quick --staged",
     postcommit: "cd ../../../ && git reset"
@@ -51,16 +51,21 @@ module.exports = function(
 
   // Setup custom Jest config with jest-junit package
   appPackage.jest = {
-    coverageReporters: ["cobertura"]
-  };
-
-  appPackage["jest-junit"] = {
-    suiteName: "Jest Tests",
-    output: "../../../target/surefire-reports/frontend-tests.xml",
-    classNameTemplate: "{classname}-{title}",
-    titleTemplate: "{classname}-{title}",
-    ancestorSeparator: " › ",
-    usePathForSuiteName: "true"
+    coverageReporters: ["cobertura"],
+    reporters: [
+      "default",
+      [
+        "jest-junit",
+        {
+          suiteName: "Jest Tests",
+          output: "../../../target/surefire-reports/frontend-tests.xml",
+          classNameTemplate: "{classname}-{title}",
+          titleTemplate: "{classname}-{title}",
+          ancestorSeparator: " › ",
+          usePathForSuiteName: "true"
+        }
+      ]
+    ]
   };
 
   fs.writeFileSync(
