@@ -42,7 +42,7 @@ module.exports = function(
     build: "react-scripts build",
     test: "react-scripts test --env=jsdom",
     ["test-ci"]:
-      "set CI=true && yarn test --testResultsProcessor jest-junit --coverage --coverageDirectory=../../../target/reports/cobertura",
+      "set CI=true && yarn test --coverage --coverageDirectory=../../../target/reports/cobertura",
     coverage: "yarn test --coverage",
     eject: "react-scripts eject",
     precommit: "pretty-quick --staged",
